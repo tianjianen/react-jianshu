@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent , Fragment} from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LoginWrapper, LoginBox, Input, Button } from './style';
@@ -9,6 +9,7 @@ class Login extends PureComponent {
 		const { loginStatus } = this.props;
 		if (!loginStatus) {
 			return (
+				< Fragment>
 				<LoginWrapper>
 					<LoginBox>
 						<Input placeholder='账号' innerRef={(input) => {this.account = input}}/>
@@ -16,6 +17,7 @@ class Login extends PureComponent {
 						<Button onClick={() => this.props.login(this.account, this.password)}>登陆</Button>
 					</LoginBox>
 				</LoginWrapper>
+				</Fragment>
 			)
 		}else {
 			return <Redirect to='/'/>
